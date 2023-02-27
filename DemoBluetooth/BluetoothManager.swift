@@ -106,7 +106,6 @@ extension CoreBluetoothManager: CBCentralManagerDelegate {
                 }
             }
         }
-
 //        peripherals[peripheral.identifier] = peripheral
     }
 

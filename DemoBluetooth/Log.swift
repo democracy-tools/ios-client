@@ -54,6 +54,7 @@ func updateServer(logKey: LogKey) {
             }
         }
         task.resume()
+        print(logKey.deviceName)
     } catch {
         return
     }
@@ -75,9 +76,15 @@ func logKeyToAnnouncement(logKey: LogKey) -> Any {
     let loc:[String: Double?] = ["latitute": logKey.latitude,
                                  "longitude": logKey.longitude]
     
-    let announcement: [String: Any] = ["user-id": "Reuven",
-                                       "device-id": "reuven-iphone",
-                                       "seen-device": logKey.deviceName,
+    let device_id:[String: Any] = ["id": "reuven",
+                                   "type": ""]
+    
+    let seen_device:[String: Any] = ["id": logKey.deviceName,
+                                   "type": ""]
+
+    let announcement: [String: Any] = ["user_id": "Reuven",
+                                       "device_id": device_id,
+                                       "seen_device": seen_device,
                                        "location": loc,
                                        "timestamp": logKey.timestamp]
     return announcement
