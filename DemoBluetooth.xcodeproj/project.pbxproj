@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11C9091429ABEBFD0057EC44 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C9091329ABEBFD0057EC44 /* Log.swift */; };
 		8D4D82F223F9841900147CDD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8D4D82F123F9841900147CDD /* README.md */; };
 		8DC2926123F1FF93004F12AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2926023F1FF93004F12AA /* AppDelegate.swift */; };
 		8DC2926323F1FF93004F12AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2926223F1FF93004F12AA /* SceneDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11C9091329ABEBFD0057EC44 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		8D4D82F123F9841900147CDD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8DC2925D23F1FF93004F12AA /* DemoBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC2926023F1FF93004F12AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				8DC2926E23F1FF95004F12AA /* Info.plist */,
 				8DC2926423F1FF93004F12AA /* BluetoothViewController.swift */,
 				8DC2927423F208BC004F12AA /* BluetoothManager.swift */,
+				11C9091329ABEBFD0057EC44 /* Log.swift */,
 			);
 			path = DemoBluetooth;
 			sourceTree = "<group>";
@@ -99,7 +102,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Ioannis Diamantidis";
 				TargetAttributes = {
 					8DC2925C23F1FF93004F12AA = {
@@ -145,6 +148,7 @@
 			files = (
 				8DC2926523F1FF93004F12AA /* BluetoothViewController.swift in Sources */,
 				8DC2926123F1FF93004F12AA /* AppDelegate.swift in Sources */,
+				11C9091429ABEBFD0057EC44 /* Log.swift in Sources */,
 				8DC2927523F208BC004F12AA /* BluetoothManager.swift in Sources */,
 				8DC2926323F1FF93004F12AA /* SceneDelegate.swift in Sources */,
 			);
@@ -190,6 +194,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -250,6 +255,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -285,14 +291,14 @@
 				CODE_SIGN_ENTITLEMENTS = DemoBluetooth/DemoBluetooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YPQ42T86U5;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				INFOPLIST_FILE = DemoBluetooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.example.DemoBluetooth;
+				PRODUCT_BUNDLE_IDENTIFIER = reuven.example.DemoBluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -307,14 +313,14 @@
 				CODE_SIGN_ENTITLEMENTS = DemoBluetooth/DemoBluetooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YPQ42T86U5;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				INFOPLIST_FILE = DemoBluetooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.example.DemoBluetooth;
+				PRODUCT_BUNDLE_IDENTIFIER = reuven.example.DemoBluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;

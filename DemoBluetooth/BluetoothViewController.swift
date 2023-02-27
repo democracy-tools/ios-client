@@ -1,9 +1,11 @@
 import UIKit
+import CoreLocation
 
-class BluetoothViewController: UIViewController {
+class BluetoothViewController: UIViewController, CLLocationManagerDelegate {
 
     init(bluetoothManager: BluetoothManager) {
         self.bluetoothManager = bluetoothManager
+        self.locationCoordinate = nil
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -14,6 +16,10 @@ class BluetoothViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
 
         view.backgroundColor = .white
         setup()
@@ -96,6 +102,9 @@ class BluetoothViewController: UIViewController {
     }()
 
     private var bluetoothManager: BluetoothManager
+    private var locationManager: CLLocationManager?
+    private var locationCoordinate: CLLocationCoordinate2D?
+    
 
     @objc private func startAdvertising(sender: UIButton!) {
         nameTextField.resignFirstResponder()
@@ -116,7 +125,25 @@ class BluetoothViewController: UIViewController {
         bluetoothManager.startScanning()
     }
 
-
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        if let location = locations.last {
+            bluetoothManager.setLocation(with: location.coordinate)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    locationManager?.delegate = self
+                    locationManager?.startUpdatingLocation()
+                }
+            }
+        }
+    }
 }
 
 extension BluetoothViewController {
@@ -181,6 +208,16 @@ extension BluetoothViewController {
 
 extension BluetoothViewController: BluetoothManagerDelegate {
     func peripheralsDidUpdate() {
-        print(bluetoothManager.peripherals.mapValues{$0.name})
+        print("-----------------")
+        print(bluetoothManager.peripherals.count)
+        for k in bluetoothManager.peripherals.keys {
+//            if bluetoothManager.peripherals[k]?.name != nil {
+                print(bluetoothManager.peripherals[k].self)
+//                bluetoothManager.peripherals[k]?.discoverServices(nil)
+//                print(bluetoothManager.peripherals[k]?.services)
+//            }
+            
+            //print(bluetoothManager.peripherals.mapValues{$0.self})
+        }
     }
 }
