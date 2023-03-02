@@ -20,6 +20,7 @@ struct LogKey : Hashable, Equatable {
     var longitude: Double
     var deviceName: String
     var timestamp: Double
+    var userID: String
 }
 
 struct LogEntry {
@@ -73,18 +74,19 @@ func logKeyToAnnouncements(logKey: LogKey) throws -> Data  {
 }
 
 func logKeyToAnnouncement(logKey: LogKey) -> Any {
+        
     let loc:[String: Double?] = ["latitute": logKey.latitude,
                                  "longitude": logKey.longitude]
     
-    let device_id:[String: Any] = ["id": "reuven",
+    let deviceID:[String: Any] = ["id": "reuven",
                                    "type": ""]
     
-    let seen_device:[String: Any] = ["id": logKey.deviceName,
+    let seenDevice:[String: Any] = ["id": logKey.deviceName,
                                    "type": ""]
 
-    let announcement: [String: Any] = ["user_id": "Reuven",
-                                       "device_id": device_id,
-                                       "seen_device": seen_device,
+    let announcement: [String: Any] = ["user_id": logKey.userID,
+                                       "device_id": deviceID,
+                                       "seen_device": seenDevice,
                                        "location": loc,
                                        "timestamp": logKey.timestamp]
     return announcement

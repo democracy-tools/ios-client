@@ -15,6 +15,7 @@ protocol BluetoothManager {
     var delegate: BluetoothManagerDelegate? { get set }
     func startAdvertising(with name: String)
     func startScanning()
+    func setUserID(with userID: String?)
     func setLocation(with location: CLLocationCoordinate2D)
 }
 
@@ -37,6 +38,10 @@ class CoreBluetoothManager: NSObject, BluetoothManager {
     func startScanning() {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
+    
+    func setUserID(with userID: String?) {
+        self.userID = userID
+    }
 
     func setLocation(with location: CLLocationCoordinate2D) {
         locationCoordinate = location
@@ -46,6 +51,7 @@ class CoreBluetoothManager: NSObject, BluetoothManager {
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
     private var name: String?
+    private var userID: String?
     private var locationCoordinate: CLLocationCoordinate2D?
 }
 
@@ -93,16 +99,19 @@ extension CoreBluetoothManager: CBCentralManagerDelegate {
         
         if let latitude = locationCoordinate?.latitude, let longitude = locationCoordinate?.longitude {
             if let name = peripheral.name {
-                let logKey = LogKey(latitude: roundLoc(latitude),
-                                    longitude: roundLoc(longitude),
-                                    deviceName: name,
-                                    timestamp: dateRoundedToMin.timeIntervalSince1970)
-                
-                let logEntry = LogEntry(timestamp: Date())
-                
-                if logs[logKey] == nil {
-                    logs[logKey] = logEntry
-                    updateServer(logKey: logKey)
+                if let userID = userID {
+                    let logKey = LogKey(latitude: roundLoc(latitude),
+                                        longitude: roundLoc(longitude),
+                                        deviceName: name,
+                                        timestamp: dateRoundedToMin.timeIntervalSince1970,
+                                        userID: userID)
+                    
+                    let logEntry = LogEntry(timestamp: Date())
+                    
+                    if logs[logKey] == nil {
+                        logs[logKey] = logEntry
+                        updateServer(logKey: logKey)
+                    }
                 }
             }
         }

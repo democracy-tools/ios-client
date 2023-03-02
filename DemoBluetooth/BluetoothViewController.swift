@@ -104,7 +104,6 @@ class BluetoothViewController: UIViewController, CLLocationManagerDelegate {
     private var bluetoothManager: BluetoothManager
     private var locationManager: CLLocationManager?
     private var locationCoordinate: CLLocationCoordinate2D?
-    
 
     @objc private func startAdvertising(sender: UIButton!) {
         nameTextField.resignFirstResponder()
@@ -123,6 +122,7 @@ class BluetoothViewController: UIViewController, CLLocationManagerDelegate {
     @objc private func startScanning(sender: UIButton) {
         bluetoothManager.delegate = self
         bluetoothManager.startScanning()
+        bluetoothManager.setUserID(with: UIDevice.current.identifierForVendor?.uuidString)
     }
 
     func locationManager(
