@@ -75,7 +75,7 @@ func logKeyToAnnouncements(logKey: LogKey) throws -> Data  {
 
 func logKeyToAnnouncement(logKey: LogKey) -> Any {
         
-    let loc:[String: Double?] = ["latitute": logKey.latitude,
+    let loc:[String: Double?] = ["latitude": logKey.latitude,
                                  "longitude": logKey.longitude]
     
     let deviceID:[String: Any] = ["id": "reuven",
