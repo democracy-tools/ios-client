@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		11C9091329ABEBFD0057EC44 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		8D4D82F123F9841900147CDD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8DC2925D23F1FF93004F12AA /* DemoBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2925D23F1FF93004F12AA /* CountMeIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountMeIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC2926023F1FF93004F12AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DC2926223F1FF93004F12AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DC2926423F1FF93004F12AA /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		8DC2925E23F1FF93004F12AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2925D23F1FF93004F12AA /* DemoBluetooth.app */,
+				8DC2925D23F1FF93004F12AA /* CountMeIn.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,9 +78,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8DC2925C23F1FF93004F12AA /* DemoBluetooth */ = {
+		8DC2925C23F1FF93004F12AA /* CountMeIn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8DC2927123F1FF95004F12AA /* Build configuration list for PBXNativeTarget "DemoBluetooth" */;
+			buildConfigurationList = 8DC2927123F1FF95004F12AA /* Build configuration list for PBXNativeTarget "CountMeIn" */;
 			buildPhases = (
 				8DC2925923F1FF93004F12AA /* Sources */,
 				8DC2925A23F1FF93004F12AA /* Frameworks */,
@@ -90,9 +90,9 @@
 			);
 			dependencies = (
 			);
-			name = DemoBluetooth;
+			name = CountMeIn;
 			productName = DemoBluetooth;
-			productReference = 8DC2925D23F1FF93004F12AA /* DemoBluetooth.app */;
+			productReference = 8DC2925D23F1FF93004F12AA /* CountMeIn.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,7 +110,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8DC2925823F1FF93004F12AA /* Build configuration list for PBXProject "DemoBluetooth" */;
+			buildConfigurationList = 8DC2925823F1FF93004F12AA /* Build configuration list for PBXProject "CountMeIn" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -123,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DC2925C23F1FF93004F12AA /* DemoBluetooth */,
+				8DC2925C23F1FF93004F12AA /* CountMeIn */,
 			);
 		};
 /* End PBXProject section */
@@ -331,7 +331,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8DC2925823F1FF93004F12AA /* Build configuration list for PBXProject "DemoBluetooth" */ = {
+		8DC2925823F1FF93004F12AA /* Build configuration list for PBXProject "CountMeIn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DC2926F23F1FF95004F12AA /* Debug */,
@@ -340,7 +340,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DC2927123F1FF95004F12AA /* Build configuration list for PBXNativeTarget "DemoBluetooth" */ = {
+		8DC2927123F1FF95004F12AA /* Build configuration list for PBXNativeTarget "CountMeIn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DC2927223F1FF95004F12AA /* Debug */,
