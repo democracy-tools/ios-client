@@ -88,6 +88,6 @@ func logKeyToAnnouncement(logKey: LogKey) -> Any {
                                        "device_id": deviceID,
                                        "seen_device": seenDevice,
                                        "location": loc,
-                                       "timestamp": logKey.timestamp]
+                                       "time": logKey.timestamp]
     return announcement
 }
