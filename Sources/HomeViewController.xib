@@ -15,6 +15,7 @@
                 <outlet property="button" destination="Ou9-Pn-GkH" id="PO8-L4-7FP"/>
                 <outlet property="container" destination="NtX-YP-fa1" id="mMS-d9-wu1"/>
                 <outlet property="counter" destination="xlR-6D-wKg" id="ikN-TY-tOT"/>
+                <outlet property="label" destination="BgN-sU-V5M" id="hBe-y9-xE8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

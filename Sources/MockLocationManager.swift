@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-#if DEBUG
+#if targetEnvironment(simulator)
 class LocationManagerMock: LocationManager {
     weak var delegate: LocationManagerDelegate?
     var coordinate: CLLocationCoordinate2D?

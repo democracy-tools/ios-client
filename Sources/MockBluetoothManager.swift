@@ -7,7 +7,7 @@
 
 import Foundation
 
-#if DEBUG
+#if targetEnvironment(simulator)
 class BluetoothManagerMock: BluetoothManager {
     weak var delegate: BluetoothManagerDelegate?
     

@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension Date {
+    var timeIntervalBeforeNow: TimeInterval {
+        return -1 * timeIntervalSinceNow
+    }
+}
+
 extension UIView {
     func addStandardMotionEffects(x: CGFloat, y: CGFloat) {
         let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)

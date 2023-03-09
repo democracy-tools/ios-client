@@ -12,6 +12,11 @@ enum Actions {
         let state: State
     }
     
+    struct UpdateCounter: Action {
+        let value: Int
+        let date: Date
+    }
+    
     struct AddEvents: Action {
         let events: [Event]
     }
@@ -22,7 +27,7 @@ enum Actions {
 }
 
 extension State {
-    static let initial = State(client: .initial, event: .initial)
+    static let initial = State(client: .initial, info: .initial, event: .initial)
 
     static func reducer(state: State, action: Action) -> State {
         var state = state
@@ -34,6 +39,7 @@ extension State {
         default:
             state = State(
                 client: .reducer(state: state.client, action: action),
+                info: .reducer(state: state.info, action: action),
                 event: .reducer(state: state.event, action: action))
         }
         
@@ -45,6 +51,25 @@ private extension ClientState {
     static let initial = ClientState(deviceId: String(NSUUID().uuidString.prefix(8)))
     
     static func reducer(state: ClientState, action: Action) -> ClientState {
+        return state
+    }
+}
+
+private extension InfoState {
+    static let initial = InfoState(counter: 0, updatedAt: .distantPast)
+    
+    static func reducer(state: InfoState, action: Action) -> InfoState {
+        var state = state
+        
+        switch action {
+        case let action as Actions.UpdateCounter:
+            state.counter = action.value
+            state.updatedAt = action.date
+            
+        default:
+            break
+        }
+        
         return state
     }
 }

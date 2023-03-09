@@ -39,6 +39,7 @@ class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDe
         isSending = true
         Task.background {
             do {
+                print("Sending \(events.count) events to server")
                 try await Network.sendEvents(events, from: deviceId)
                 await MainActor.run {
                     self.didFinishSendingEvents(events)

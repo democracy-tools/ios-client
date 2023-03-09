@@ -7,9 +7,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, HomeViewModelDelegate {
+class HomeViewController: UIViewController, HomeViewModelPresenter {
     @IBOutlet var background: UIView!
     @IBOutlet var button: UIButton!
+    @IBOutlet var label: UILabel!
     @IBOutlet var counter: UILabel!
     @IBOutlet var container: UIView!
 
@@ -18,7 +19,7 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "HomeViewController", bundle: nil)
-        self.viewModel.delegate = self
+        self.viewModel.presenter = self
     }
     
     required init?(coder: NSCoder) {
@@ -48,6 +49,23 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     
     func updateViews() {
         guard isViewLoaded else { return }
+        
+        if case let value = viewModel.state.counter, !value.isEmpty {
+            UIView.animate(withDuration: 0.5) { [self] in
+                container.alpha = 1
+            }
+            counter.text = value
+        } else {
+            container.alpha = 0
+            counter.text = ""
+        }
+        
+        if viewModel.state.isStarted {
+            let image = (#imageLiteral(resourceName: "ButtonCircleGreen"))
+            button.setImage(image, for: .normal)
+            button.isUserInteractionEnabled = false
+            label.text = "לצאת\nמהאירוע"
+        }
     }
     
     /// Actions
