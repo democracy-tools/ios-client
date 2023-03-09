@@ -27,6 +27,8 @@
 		2BB9757129B6AC6F00F4695C /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9757029B6AC6F00F4695C /* BluetoothManager.swift */; };
 		2BB9757529B6B31F00F4695C /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9757429B6B31F00F4695C /* EventManager.swift */; };
 		2BB9757729B7378000F4695C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9757629B7378000F4695C /* Network.swift */; };
+		2BD53F5329BA60940087CE1A /* MockBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53F5229BA60940087CE1A /* MockBluetoothManager.swift */; };
+		2BD53F5529BA60AF0087CE1A /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD53F5429BA60AF0087CE1A /* MockLocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		2BB9757029B6AC6F00F4695C /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		2BB9757429B6B31F00F4695C /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		2BB9757629B7378000F4695C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2BD53F5229BA60940087CE1A /* MockBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBluetoothManager.swift; sourceTree = "<group>"; };
+		2BD53F5429BA60AF0087CE1A /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 				2BB9753A29B5188F00F4695C /* App */,
 				2BB9754B29B51C7800F4695C /* Core */,
 				2BB9754E29B51DB800F4695C /* Others */,
+				2BD53F5129BA60830087CE1A /* Testing */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -181,6 +186,15 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		2BD53F5129BA60830087CE1A /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				2BD53F5229BA60940087CE1A /* MockBluetoothManager.swift */,
+				2BD53F5429BA60AF0087CE1A /* MockLocationManager.swift */,
+			);
+			name = Testing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB9756C29B6A8A800F4695C /* LocationManager.swift in Sources */,
+				2BD53F5529BA60AF0087CE1A /* MockLocationManager.swift in Sources */,
 				2BB9753F29B5190F00F4695C /* AppCoordinator.swift in Sources */,
 				2BB9756929B6151200F4695C /* HomeViewModel.swift in Sources */,
 				2BB9755529B52F5600F4695C /* HomeCoordinator.swift in Sources */,
@@ -268,6 +283,7 @@
 				2BB9754629B51B1B00F4695C /* State.swift in Sources */,
 				2B8654A829B23EE800742F4A /* AppDelegate.swift in Sources */,
 				2BB9755029B51DC400F4695C /* Extensions.swift in Sources */,
+				2BD53F5329BA60940087CE1A /* MockBluetoothManager.swift in Sources */,
 				2BB9754829B51B8900F4695C /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

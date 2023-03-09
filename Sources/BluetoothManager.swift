@@ -5,16 +5,20 @@
 //  Created by Gil Shapira on 06/03/2023.
 //
 
-import Foundation
 import CoreBluetooth
 
 private let serviceId = CBUUID(string: "F4C514A0-9E6B-46E6-A787-E7475BCCD36E")
 
 protocol BluetoothManagerDelegate: AnyObject {
-    func bluetoothManagerDidDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String: Any])
+    func bluetoothManagerDidDiscoverPeripheral(_ peripheral: Peripheral, advertisementData: [String: Any])
 }
 
-class BluetoothManager: NSObject {
+protocol BluetoothManager: AnyObject {
+    var delegate: BluetoothManagerDelegate? { get set }
+    func start(deviceId: String)
+}
+
+class BluetoothManagerImpl: NSObject, BluetoothManager {
     weak var delegate: BluetoothManagerDelegate?
     
     private var name = ""
@@ -36,7 +40,7 @@ class BluetoothManager: NSObject {
     }
 }
 
-extension BluetoothManager: CBPeripheralManagerDelegate {
+extension BluetoothManagerImpl: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         guard peripheral.state == .poweredOn else { return print("Peripheral is in invalid state: \(peripheral.state)") }
         
@@ -53,7 +57,7 @@ extension BluetoothManager: CBPeripheralManagerDelegate {
     }
 }
 
-extension BluetoothManager: CBCentralManagerDelegate {
+extension BluetoothManagerImpl: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         guard central.state == .poweredOn else { return print("Central is in invalid state: \(central.state)") }
 
@@ -72,3 +76,9 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 }
 
+protocol Peripheral: AnyObject {
+    var name: String? { get }
+}
+
+extension CBPeripheral: Peripheral {
+}

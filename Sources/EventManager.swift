@@ -6,15 +6,13 @@
 //
 
 import Foundation
-import CoreBluetooth
-import CoreLocation
 
 class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDelegate {
     let model: Model
     let bluetoothManager: BluetoothManager
     let locationManager: LocationManager
     
-    private var pendingPeripherals: [CBPeripheral] = []
+    private var pendingPeripherals: [Peripheral] = []
     private var isSending = false
 
     init(model: Model, bluetoothManager: BluetoothManager, locationManager: LocationManager) {
@@ -22,6 +20,7 @@ class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDe
         self.bluetoothManager = bluetoothManager
         self.locationManager = locationManager
         
+        self.model.subscribe(self)
         self.bluetoothManager.delegate = self
         self.locationManager.delegate = self
     }
@@ -33,27 +32,35 @@ class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDe
     func sendEventsIfNeeded() {
         guard !isSending else { return print("Event sending already in progress") }
         guard case let events = model.state.event.events, !events.isEmpty else { return print("No events to send") }
-        
+        sendEvents(events, from: model.state.client.deviceId)
+    }
+    
+    func sendEvents(_ events: [Event], from deviceId: String) {
+        isSending = true
         Task.background {
-            await self.sendEvents(events, from: self.model.state.client.deviceId)
+            do {
+                try await Network.sendEvents(events, from: deviceId)
+                await MainActor.run {
+                    self.didFinishSendingEvents(events)
+                }
+            } catch {
+                await MainActor.run {
+                    self.didFailSendingEvents(error)
+                }
+            }
         }
     }
     
-    func sendEvents(_ events: [Event], from deviceId: String) async {
-        isSending = true
-        defer {
-            isSending = false
-        }
-        do {
-            try await Network.sendEvents(events, from: deviceId)
-            
-            print("Successfully sent \(events.count) events")
-            let eventIds = events.map { $0.id }
-            model.dispatch(Actions.RemoveEvents(eventIds: eventIds))
-            model.save()
-        } catch {
-            print("Event sending failed: \(error)")
-        }
+    func didFinishSendingEvents(_ events: [Event]) {
+        print("Successfully sent \(events.count) events")
+        model.dispatch(Actions.RemoveEvents(eventIds: events.map { $0.id }))
+        model.save()
+        isSending = false
+    }
+    
+    func didFailSendingEvents(_ error: Error) {
+        print("Fail to send events: \(error)")
+        isSending = false
     }
     
     func addEventsIfNeeded() {
@@ -70,7 +77,7 @@ class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDe
         model.save()
     }
     
-    func popNamedPeripheral() -> CBPeripheral? {
+    func popNamedPeripheral() -> Peripheral? {
         guard !pendingPeripherals.isEmpty else { return nil }
         guard let index = pendingPeripherals.firstIndex(where: { $0.name != nil }) else {
             print("No peripheral with name found out of \(pendingPeripherals.count) peripherals")
@@ -79,7 +86,7 @@ class EventManager: StoreSubscriber, BluetoothManagerDelegate, LocationManagerDe
         return pendingPeripherals.remove(at: index)
     }
     
-    func bluetoothManagerDidDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String : Any]) {
+    func bluetoothManagerDidDiscoverPeripheral(_ peripheral: Peripheral, advertisementData: [String: Any]) {
         pendingPeripherals.append(peripheral)
         addEventsIfNeeded()
     }

@@ -20,11 +20,11 @@ enum Network {
         print("Sending \(events.count) events to server")
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse, (200 ... 299) ~= response.statusCode else {
-            let body = String(bytes: data, encoding: .utf8) ?? "---"
-            print("Failed to send event to server: \(body)")
+            let body = String(bytes: data, encoding: .utf8) ?? ""
+            print("Failed to send \(events.count) events to server: \(body)")
             throw URLError(.badServerResponse)
         }
-        print("Events sent successfully")
+        print("\(events.count) events sent successfully")
     }
 }
 
@@ -36,8 +36,13 @@ private func serializeEvents(_ events: [Event], from deviceId: String) throws ->
 }
 
 private func serializeEvent(_ event: Event, from deviceId: String) -> [String: Any] {
+    #if targetEnvironment(simulator)
+    let userId = "Simulator"
+    #else
+    let userId = UIDevice.current.name
+    #endif
     return [
-        "user_id": UIDevice.current.name, // TODO
+        "user_id": userId,
         "device_id": [
             "id": deviceId,
             "type": "",

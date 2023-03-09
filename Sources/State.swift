@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 struct State: Codable {
     var client: ClientState
